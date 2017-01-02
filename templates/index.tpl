@@ -4,11 +4,14 @@
   </head>
   <body>
     <div id="display">
-        <h1 class="tpl"></h1>
-        <h2 class="tpl"></h2>
-        <h3 class="tpl"></h3>
+        <div id="card">
+          <h1 class="tpl"></h1>
+          <h2 class="tpl">loading..</h2>
+          <h3 class="tpl"></h3>
+        </div>
     </div>
     <script type="text/javascript" src="{{url_for('static', filename='jquery.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='jquery-ui.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='show.js')}}"></script>
   </body>
 </html>
