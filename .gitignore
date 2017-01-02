@@ -1,0 +1,4 @@
+*.pyc
+*.anki2
+venv
+
