@@ -1,7 +1,9 @@
+import os
+import json
 from peewee import *
 
-DB_FILE = 'collection.anki2'
-db = SqliteDatabase(DB_FILE)
+ANKI_DB = os.environ.get("ANKI_DB", 'collection.anki2')
+db = SqliteDatabase(ANKI_DB)
 
 
 class JSONField(Field):

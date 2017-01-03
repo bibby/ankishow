@@ -1,0 +1,3 @@
+*.pyc
+*.anki2
+.gitignore

@@ -1,10 +1,11 @@
+import os
 import json
 from models import *
 
-
-DECK_ID = '1482469949230'
-COLLECTION_ID = 1
-FIELDS = [1, 2, 3]
+env = os.environ.get
+DECK_ID = env("DECK_ID")
+COLLECTION_ID = env("COLLECTION_ID")
+FIELDS = map(int, env("FIELDS").split(','))
 
 
 def list_decks():
@@ -14,7 +15,8 @@ def list_decks():
         for i, d in c.decks.iteritems()
         if d.get("name") not in reserved_names
     ]
-    print list(sorted(decks))
+
+    return list(sorted(decks))
 
 
 def get_nid(nid):

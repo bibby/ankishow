@@ -1,6 +1,6 @@
 import json
 from flask import Flask, request, Response, render_template
-from ankishow import random_cards
+from ankishow import random_cards, list_decks
 
 app = Flask(__name__)
 
@@ -17,8 +17,14 @@ def data_feed():
         status=200,
         mimetype="application/json"
     )
-    
 
+@app.route("/decks")
+def decks():
+    return Response(
+        response=json.dumps(list_decks()),
+        status=200,
+        mimetype="application/json"
+    )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

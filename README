@@ -1,0 +1,10 @@
+To Run
+
+    docker run -d \
+    -e DECK_ID=1482469949230 \
+    -e ANKI_DB=/data/collection.anki2 \
+    -v /home/bibby/Documents/Anki/bibby:/data:ro \
+    -p 8000:8000 \
+    ankishow`
+
+
