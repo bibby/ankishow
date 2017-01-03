@@ -8,10 +8,11 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK on
 
 RUN pip install -U 'pip<9'
 
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
 WORKDIR /usr/src
 COPY . .
-
-RUN pip install -r requirements.txt
 
 EXPOSE 8000
 ENV COLLECTION_ID 1
