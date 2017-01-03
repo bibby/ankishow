@@ -1,4 +1,5 @@
 var slide_time = 1000 * 5;
+var transition_time = 500;
 var colors = [
   '7FFFD4', 'FFE4C4', '2020DF', '8A2BE2',
   'DEB887', '5F9EA0', '7FFF00', 'FF7F50',
@@ -55,14 +56,12 @@ function nextItem()
 {
     var item = data.shift();
     nextColor();
-    setTimeout(function()
-    {
-      item_hist.push([item, color]);
-      while(item_hist.length > 20)
-        item_hist.shift();
-      hist_index = item_hist.length - 1;
-      setText(item);
-    }, 400);
+
+    item_hist.push([item, color]);
+    while(item_hist.length > 20)
+      item_hist.shift();
+    hist_index = item_hist.length - 1;
+    setText(item);
 
     if (!data.length)
       loadData();
@@ -70,7 +69,12 @@ function nextItem()
 
 function setText(item)
 {
-  $(".tpl").each(function(i)
+  fadeCard(getCard(active_card));
+  console.log(item);
+  nextCard()
+  .fadeIn(transition_time)
+  .find(".tpl")
+  .each(function(i)
   {
     $(this).text(item[i]);
   });
@@ -94,7 +98,7 @@ function setColor(to)
     {
       backgroundColor: "#" + to
     },
-    500
+    transition_time
   );
 }
 
@@ -167,4 +171,25 @@ function historyItem()
       setText(item[0]);
       setColor(item[1]);
   }
+}
+
+var active_card = 0;
+var card_names =  ['a', 'b'];
+function getCard(c)
+{
+  return $("#" + card_names[c]);
+};
+
+function nextCard()
+{
+  active_card = Math.abs(active_card - 1);
+  return getCard(active_card);
+};
+
+function fadeCard($c)
+{
+  $c.fadeOut(transition_time, function()
+  {
+    $(this).find(".tpl").text('');
+  });
 }

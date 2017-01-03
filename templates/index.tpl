@@ -4,7 +4,12 @@
   </head>
   <body>
     <div id="display">
-        <div id="card">
+        <div class='card' id="a">
+          <h1 class="tpl"></h1>
+          <h2 class="tpl">loading..</h2>
+          <h3 class="tpl"></h3>
+        </div>
+        <div class='card' id="b">
           <h1 class="tpl"></h1>
           <h2 class="tpl">loading..</h2>
           <h3 class="tpl"></h3>
