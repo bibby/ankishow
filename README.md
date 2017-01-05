@@ -26,3 +26,10 @@ If you don't know the DeckId for what you're trying to review, that's ok;
 Assuming the Collection is id 1, you can start it without a deck and load
 the path `http://localhost:8000/decks`. Record the DeckId and restart the
 container.
+
+Key Bindings
+
+    z - stops the show
+    x - goes back one item. There's history bucket of 20
+    c - goes forward one history item.
+    v - resumes the show
