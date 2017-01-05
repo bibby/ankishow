@@ -16,8 +16,8 @@
           <h3 class="tpl"></h3>
         </div>
     </div>
-    <script type="text/javascript" src="{{url_for('static', filename='jquery.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='jquery-ui.js')}}"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='show.js')}}"></script>
   </body>
 </html>
