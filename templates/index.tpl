@@ -1,5 +1,6 @@
 <html>
   <head>
+    <title>AnkiShow</title>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
   </head>
   <body>
