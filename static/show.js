@@ -1,4 +1,4 @@
-var slide_time = 1000 * 5;
+var slide_time = 1000 * 8;
 var transition_time = 500;
 var colors = [
   '7FFFD4', 'FFE4C4', '2020DF', '8A2BE2',
