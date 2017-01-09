@@ -25,3 +25,11 @@ body {
 h1, h2, h3{
   font-weight: normal;
 }
+
+#write {
+  margin: 5%;
+}
+
+dd{
+  max-width: 55%;
+}
