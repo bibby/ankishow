@@ -14,7 +14,19 @@ def index():
 
 @app.route("/write/<int:num>")
 def pick_page(num):
-    return render_template('write.html', cards=random_cards(num))
+    write_fields = map(
+        int,
+        os.environ.get("WRITE_FIELDS", "").split(",")
+    )
+
+    write_cards = list(random_cards(num))
+    for k, v in enumerate(write_cards):
+        write_cards[k] = [v[f - 1] for f in write_fields]
+
+    return render_template(
+        'write.html',
+        cards=write_cards
+    )
 
 
 @app.route("/data/<int:num>")
