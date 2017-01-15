@@ -1,5 +1,7 @@
+import os
 import json
-from flask import Flask, request, Response, render_template
+import magic
+from flask import Flask, request, Response, render_template, abort
 from ankishow import random_cards, list_decks
 
 app = Flask(__name__)
@@ -39,6 +41,19 @@ def decks():
         response=json.dumps(list_decks()),
         status=200,
         mimetype="application/json"
+    )
+
+@app.route("/audio/<string:mp3>")
+def audio(mp3):
+    path = "/data/collection.media/" + mp3
+    exists = os.path.isfile(path)
+    if not exists:
+        abort(404)
+
+    return Response(
+        response=open(path).read(),
+        status=200,
+        mimetype=magic.from_file(path, mime=True)
     )
 
 if __name__ == '__main__':

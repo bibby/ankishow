@@ -1,5 +1,7 @@
 var slide_time = 1000 * 8;
+var audio_delay = 750;
 var transition_time = 500;
+
 var colors = [
   '7FFFD4', 'FFE4C4', '2020DF', '8A2BE2',
   'DEB887', '5F9EA0', '7FFF00', 'FF7F50',
@@ -70,16 +72,47 @@ function nextItem()
 function setText(item)
 {
   fadeCard(getCard(active_card));
-  console.log(item);
   var card = nextCard().empty();
 
   item.forEach(function(v, i)
   {
-    var tag = $("<h" + (i+1) + ">").html(v);
+    var tag, sound = getSound(v);
+    if(sound)
+    {
+      tag = $("<audio/>")
+      .attr({
+        src: "audio/" + sound
+      });
+    }
+    else
+    {
+      tag = $("<h" + (i+1) + "/>").html(v);
+    }
     card.append(tag);
   });
 
-  card.fadeIn(transition_time);
+  card.fadeIn(transition_time, function()
+  {
+    $(this)
+    .find("audio")
+    .each(function()
+    {
+      var audio = this;
+      setTimeout(function()
+      {
+          if($.contains(document, audio))
+            audio.play();
+      }, audio_delay);
+    });
+  });
+}
+
+var sound_regexp = /^\[sound:\s?(.*)\]/;
+function getSound(value)
+{
+  var m = value.match(sound_regexp);
+  if (m && m.length > 1)
+    return m[1];
 }
 
 var color;
@@ -192,8 +225,9 @@ function nextCard()
 
 function fadeCard($c)
 {
+  $c.find("audio").remove();
   $c.fadeOut(transition_time, function()
   {
-    $(this).find(".tpl").text('');
+    $(this).empty();
   });
 }
