@@ -29,8 +29,8 @@ $(function()
   $("body").keypress(keyPress);
   loadData(function()
   {
-    nextItem();
-    startInterval();
+    if (startInterval())
+      nextItem();
   });
 });
 
@@ -71,13 +71,15 @@ function setText(item)
 {
   fadeCard(getCard(active_card));
   console.log(item);
-  nextCard()
-  .fadeIn(transition_time)
-  .find(".tpl")
-  .each(function(i)
+  var card = nextCard().empty();
+
+  item.forEach(function(v, i)
   {
-    $(this).text(item[i]);
+    var tag = $("<h" + (i+1) + ">").html(v);
+    card.append(tag);
   });
+
+  card.fadeIn(transition_time);
 }
 
 var color;
@@ -109,6 +111,7 @@ function startInterval()
   {
     console.info('starting');
     _intv = setInterval(nextItem, slide_time);
+    return true;
   }
 };
 
@@ -144,7 +147,8 @@ function keyPress(e)
       break;
 
     case 118: // v, resume
-      startInterval();
+      if (startInterval())
+        nextItem();
       break;
   }
 }
