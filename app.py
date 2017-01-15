@@ -24,7 +24,7 @@ def pick_page(num):
         write_cards[k] = [v[f - 1] for f in write_fields]
 
     return render_template(
-        'write.html',
+        'write.tpl',
         cards=write_cards
     )
 

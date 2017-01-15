@@ -31,6 +31,7 @@ $(function()
   $("body").keypress(keyPress);
   loadData(function()
   {
+    $(".loading").remove();
     if (startInterval())
       nextItem();
   });
